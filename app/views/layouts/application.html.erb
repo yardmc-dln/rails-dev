@@ -1,0 +1,59 @@
+<html>
+<head>
+<head>
+  <title>DİLAN YARDIMCI</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<link rel="stylesheet" media="all" href="/assets/application-43731e821df91524293c7ce3792cd9367b6509f24378b041d84c093e17f67a23.css" data-turbolinks-track="true">
+<script src="/assets/application-a3d1d0a5e44dcc62e891e1705804bfcbcbe077456c5ac43eb511691e1ef69a77.js" data-turbolinks-track="true"></script><style></style>
+<meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="DCybKZLEYbiR15eGHVZ2lmR5AzYKigMoaAlF9ugjTx/A7idrkiKUpGZDV0bDz4/LJnD1zQgbLYrCNESIlzCMlQ==">
+
+<body>
+<nav class="navbar navbar-default">
+		<div class="container">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">DİLAN YARDIMCI</a>
+    </div>
+
+      <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %> 
+                  <li><%= link_to avatar_for(current_user, size: 15), current_user %> </li>
+                <li> <%= link_to 'Çıkış Yapınız', destroy_user_session_path %></li>
+                <% else %>
+                   <li><%= link_to 'Kayıt Olunuz', new_user_registration_path %></li>
+                   <li><%= link_to 'Giriş Yapınız', new_user_session_path %></li>
+                <% end %>
+    </ul>
+
+  </div>
+    </div>
+</nav>    
+
+<div class="row">
+ 
+        
+
+    	<div class="col-md-2">
+     	<ul class="nav navbar-nav">
+      <li><%= link_to "Paylaşım", posts_url, class:"glyphicon glyphicon-th" %></li><br>
+      <li><%= link_to 'Yeni', new_post_path, class:"glyphicon glyphicon-plus" %></li><br>
+      <li><%= link_to "Profil", current_user, class:"glyphicon glyphicon-user" %></li><br>
+    </ul>
+        </div>
+        
+         <div class="col-md-10">
+        
+         <%=yield%>
+        </div>
+     
+     </div>   
+<%= render 'layouts/footer' %>	
+</body>
+</html>
+

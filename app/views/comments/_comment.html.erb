@@ -1,0 +1,14 @@
+<h4><%= @comments.count %> yorum</h4>
+
+<% @comments.each do |comment| %>
+    <p><b><%= comment.user.email %> </b></p>
+    <p><%= comment.content %></p>
+    
+    <% if current_user == comment.user %>
+        <%= link_to '', [comment.post, comment], method: :delete, data: { confirm: 'Silinsin mi?' }  ,class:"glyphicon glyphicon-trash"%>
+        |
+        <%= link_to '', edit_post_comment_path(comment.post, comment), class:"glyphicon glyphicon-pencil" %><br><br
+    <% end %>
+<% end %>
+
+<%= render 'comments/form' %>

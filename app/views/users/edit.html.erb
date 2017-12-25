@@ -1,0 +1,14 @@
+<h1>Profilimi Düzenle</h1>
+<%= form_for(@user, html: {multipart: true}) do |f| %>
+
+ <%= f.label :Email %><br>
+ <%= f.text_field :email %><br><br>
+  
+ <%= f.label :Hakkımda %><br>
+ <%= f.text_area :descriptions %><br><br>
+ 
+ <%= f.label :Fotoğraf %> 
+ <%= f.file_field :avatar %><br>
+ 
+ <%= f.submit "Güncelle." %>
+<% end %>

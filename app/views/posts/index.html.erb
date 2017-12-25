@@ -1,0 +1,45 @@
+<div class="col-md-12">
+        <div class="row">
+          <% @posts.each do |post| %>
+
+            <div class="panel panel-default widget">
+
+                <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-2 col-md-1">
+                                    <%= link_to image_tag post.user.avatar.url(:thumb) if post.user.avatar?%>
+                                </div>
+                                <div class="col-xs-10 col-md-11">
+                                    <div>
+                                        <div class="mic-info">
+                                             <a href="users/<%=post.user.id%>"> <%=post.user.email%> </a> <%=post.created_at.strftime("%b.%d.%Y, %H:%M")%> 
+                                        </div>
+                                    </div>
+                                    <div class="comment-text">
+                                        <%=post.title%> <br/>
+                                        <%=image_tag post.image.url(:medium),class:"img img-responsive" if post.image?%>
+                                        <br/>
+                                        <%=post.msg%>
+                                    </div>
+                                    
+                                    <div class="action">
+                                      <div id="<%=post.id%>">
+                                      <%if Like.where(user:current_user, post:post).count>0%>
+                                         <%= link_to "", unlike_post_path(post), class:"glyphicon glyphicon-heart",remote: :true, method: :put %>
+                                      <%else%>
+                                         <%= link_to "", like_post_path(post), class:"glyphicon glyphicon-heart-empty",remote: :true, method: :put %>
+                                      <%end%>
+                                      </div><br>
+                                     <%= link_to '', post_path(post),class:"glyphicon glyphicon-hand-right" %>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <%end%>
+        </div>
+    </div>
